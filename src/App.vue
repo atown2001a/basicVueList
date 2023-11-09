@@ -1,19 +1,41 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>{{ newData}}</p>
+    <input type="text" v-model="newData" />
+
+    <button @click="onAddNewDataToList" > Add to list</button>
+    <ul>
+      <li v-for="element in newDataArray" :key="element">{{element}}</li>
+   </ul>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+  data () {
+    return {
+      newData: null,
+      newDataArray:[]
+    };
+  },
+
+
+  methods:{
+    onAddNewDataToList(){
+      this.newDataArray.push(this.newData);
+      console.log("This list is", this.newDataArray) 
+    }
+  },
+
+
+  components: {}
+};
 </script>
 
 <style>
